@@ -4,32 +4,28 @@
 
 #include "occurrences.h"
 
-int firstOccurrence(const int *arr, int n, int x) {
-    int low = 0, high = n - 1; // Inicializamos los índices de búsqueda.
-    int result = -1; // Inicializamos el resultado.
-    while (low <= high) { // Mientras no se crucen los índices.
-        int mid = low + (high - low) / 2; // Calculamos el índice medio.
-        if (arr[mid] < x) { // Si el número en el índice medio es menor que x.
-            low = mid + 1; // Actualizamos el índice bajo.
-        } else { // Si el número en el índice medio es mayor o igual que x.
-            if (arr[mid] == x) result = mid; // Actualizamos el resultado.
-            high = mid - 1; // Actualizamos el índice alto.
-        }
+int firstOccurrence(const int *arr, int low, int high, int x) {
+    if (high >= low) { // Si el índice más alto es mayor o igual al índice más bajo
+        int mid = low + (high - low) / 2; // Se obtiene el índice medio
+        if ((mid == 0 || x > arr[mid - 1]) && arr[mid] == x) // Si el índice medio es 0 o el número es mayor al número anterior y el número en el índice medio es igual al número buscado
+            return mid; // Se regresa el índice medio
+        else if (x > arr[mid]) // Si el número es mayor al número en el índice medio
+            return firstOccurrence(arr, mid + 1, high, x); // Se busca en la mitad derecha
+        else // Si no
+            return firstOccurrence(arr, low, mid - 1, x); // Se busca en la mitad izquierda
     }
-    return result;
+    return -1; // Si no se encuentra el número
 }
 
-int lastOccurrence(const int *arr, int n, int x) {
-    int low = 0, high = n - 1; // Inicializamos los índices de búsqueda.
-    int result = -1; // Inicializamos el resultado.
-    while (low <= high) { // Mientras no se crucen los índices.
-        int mid = low + (high - low) / 2; // Calculamos el índice medio.
-        if (arr[mid] > x) { // Si el número en el índice medio es mayor que x.
-            high = mid - 1; // Actualizamos el índice alto.
-        } else {
-            if (arr[mid] == x) result = mid; // Actualizamos el resultado.
-            low = mid + 1; // Actualizamos el índice bajo.
-        }
+int lastOccurrence(const int *arr, int low, int high, int n, int x) {
+    if (high >= low) { // Si el índice más alto es mayor o igual al índice más bajo
+        int mid = low + (high - low) / 2; // Se obtiene el índice medio
+        if ((mid == n - 1 || x < arr[mid + 1]) && arr[mid] == x) // Si el índice medio es igual al tamaño del arreglo menos 1 o el número es menor al número siguiente y el número en el índice medio es igual al número buscado
+            return mid; // Se regresa el índice medio
+        else if (x < arr[mid]) // Si el número es menor al número en el índice medio
+            return lastOccurrence(arr, low, mid - 1, n, x); // Se busca en la mitad izquierda
+        else // Si no
+            return lastOccurrence(arr, mid + 1, high, n, x); // Se busca en la mitad derecha
     }
-    return result;
+    return -1; // Si no se encuentra el número
 }

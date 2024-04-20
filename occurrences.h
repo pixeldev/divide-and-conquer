@@ -10,21 +10,24 @@
  * utilizando el paradigma de divide y vencerás.
  *
  * @param arr   el arreglo ordenado.
- * @param n     el tamaño del arreglo.
+ * @param low   el índice más bajo del arreglo.
+ * @param high  el índice más alto del arreglo.
  * @param x     el número a buscar.
  * @return la primera ocurrencia del número en el arreglo, -1 si no se encuentra.
  */
-int firstOccurrence(const int *arr, int n, int x);
+int firstOccurrence(const int *arr, int low, int high, int x);
 
 /**
  * Encuentra la última ocurrencia de un número en un arreglo ordenado
  * utilizando el paradigma de divide y vencerás.
  *
  * @param arr   el arreglo ordenado.
+ * @param low   el índice más bajo del arreglo.
+ * @param high  el índice más alto del arreglo.
  * @param n     el tamaño del arreglo.
  * @param x     el número a buscar.
  * @return la última ocurrencia del número en el arreglo, -1 si no se encuentra.
  */
-int lastOccurrence(const int *arr, int n, int x);
+int lastOccurrence(const int *arr, int low, int high, int n, int x);
 
 #endif //DIVIDE_Y_VENCERAS_OCCURRENCES_H

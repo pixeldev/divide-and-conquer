@@ -58,8 +58,8 @@ int main(void) {
             printf("Introduce el elemento a buscar:\n>> ");
             int x;
             scanf("%d", &x);
-            int first = firstOccurrence(arr, size, x);
-            int last = lastOccurrence(arr, size, x);
+            int first = firstOccurrence(arr, 0, size - 1, x);
+            int last = lastOccurrence(arr, 0, size - 1, size, x);
             if (first == -1) {
                 puts("El elemento no se encuentra en el arreglo.");
             } else {
